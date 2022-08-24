@@ -1,9 +1,11 @@
+package ElevatorsSystem;
+
 import Elevator.Direction;
 import Elevator.IElevator;
 
 import java.util.ArrayList;
 
-public class LowestCostElevatorsSystem extends ElevatorSystem {
+public class LowestCostElevatorsSystem extends ElevatorsSystem {
     public LowestCostElevatorsSystem(ArrayList<IElevator> elevators) {
         super(elevators);
     }

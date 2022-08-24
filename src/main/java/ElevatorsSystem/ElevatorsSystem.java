@@ -1,11 +1,13 @@
+package ElevatorsSystem;
+
 import Elevator.IElevator;
 
 import java.util.ArrayList;
 
-public abstract class ElevatorSystem implements IElevatorSystem {
+public abstract class ElevatorsSystem implements IElevatorsSystem {
     protected final ArrayList<IElevator> elevators;
 
-    public ElevatorSystem(ArrayList<IElevator> elevators) {
+    public ElevatorsSystem(ArrayList<IElevator> elevators) {
         this.elevators = elevators;
         if(elevators.isEmpty())
         {
