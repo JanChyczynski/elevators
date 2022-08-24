@@ -4,7 +4,7 @@ import Elevator.Elevator;
 import Elevator.Direction;
 import Elevator.ElevatorStatus;
 import Elevator.IElevator;
-import Elevator.FcfsElevator;
+import Elevator.MinOverheadElevator;
 import ElevatorsSystem.IElevatorsSystem;
 import ElevatorsSystem.LowestCostElevatorsSystem;
 
@@ -19,7 +19,7 @@ public class TerminalUI {
     public static void init() {
         ArrayList<IElevator> elevators = new ArrayList<>();
         for (int i = 0; i < ELEVATORS_NUMBER; i++) {
-            elevators.add(new FcfsElevator(START_FLOOR));
+            elevators.add(new MinOverheadElevator(START_FLOOR));
         }
         elevatorSystem = new LowestCostElevatorsSystem(elevators);
     }
