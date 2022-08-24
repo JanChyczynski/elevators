@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class FcfsElevatorTest {
     @Test
-    public void shouldQueueDestinations(){
+    public void shouldQueueDestinations() {
         FcfsElevator elevator = new FcfsElevator(0);
         assert (elevator.getDestinations().isEmpty());
         elevator.call(3, Direction.UP);
@@ -27,7 +27,7 @@ public class FcfsElevatorTest {
     }
 
     @Test
-    public void shouldCalculateCost(){
+    public void shouldCalculateCost() {
         FcfsElevator elevator = new FcfsElevator(0);
         assert (elevator.getDestinations().isEmpty());
         elevator.call(3, Direction.UP);
@@ -44,13 +44,13 @@ public class FcfsElevatorTest {
     }
 
     @Test
-    public void testGetNextStop(){
+    public void testGetNextStop() {
         FcfsElevator elevator = new FcfsElevator(0);
-        assertEquals (0, elevator.getNextStop());
+        assertEquals(0, elevator.getNextStop());
         elevator.call(3, Direction.UP);
-        assertEquals (3, elevator.getNextStop());
+        assertEquals(3, elevator.getNextStop());
         elevator.call(2, Direction.UP);
-        assertEquals (3, elevator.getNextStop());
+        assertEquals(3, elevator.getNextStop());
     }
 
 }

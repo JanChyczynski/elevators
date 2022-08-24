@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LowestCostElevatorsSystemTest {
     @Test
-    void shouldCallElevatorWithMinCost(){
+    void shouldCallElevatorWithMinCost() {
         ArrayList<IElevator> elevators1 = new ArrayList<>(List.of(new TestElevator(4)));
         LowestCostElevatorsSystem elevatorsSystem1 = new LowestCostElevatorsSystem(elevators1);
         assertEquals(0, elevatorsSystem1.call(1, Direction.UP));

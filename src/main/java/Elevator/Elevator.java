@@ -3,7 +3,7 @@ package Elevator;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class Elevator implements IElevator{
+public abstract class Elevator implements IElevator {
     protected int floor;
     protected List<Integer> destinations;
     protected ElevatorStatus status;
@@ -21,21 +21,20 @@ public abstract class Elevator implements IElevator{
         for (int i = 0; i < time; i++) {
             switch (status) {
                 case MOVING:
-                    if(floor == getNextStop()) {
+                    if (floor == getNextStop()) {
                         status = ElevatorStatus.PICKUP;
                         destinations.remove(0);
-                    }
-                    else {
-                        floor += floor < getNextStop()? 1 : -1;
+                    } else {
+                        floor += floor < getNextStop() ? 1 : -1;
                     }
                     break;
                 case WAITING:
-                    if(!destinations.isEmpty()){
+                    if (!destinations.isEmpty()) {
                         status = ElevatorStatus.MOVING;
                     }
                     break;
                 case PICKUP:
-                    status = destinations.isEmpty()? ElevatorStatus.WAITING : ElevatorStatus.MOVING;
+                    status = destinations.isEmpty() ? ElevatorStatus.WAITING : ElevatorStatus.MOVING;
                     break;
             }
         }
@@ -48,7 +47,7 @@ public abstract class Elevator implements IElevator{
 
     @Override
     public int getNextStop() {
-        return destinations.isEmpty()? floor : destinations.get(0);
+        return destinations.isEmpty() ? floor : destinations.get(0);
     }
 
     public List<Integer> getDestinations() {
@@ -63,7 +62,7 @@ public abstract class Elevator implements IElevator{
     public String toString() {
         return "Elevator{" +
                 "floor=" + floor +
-                (destinations.isEmpty()? "" : (", next stop=" + getNextStop()) )+
+                (destinations.isEmpty() ? "" : (", next stop=" + getNextStop())) +
                 ", status=" + status +
                 '}';
     }

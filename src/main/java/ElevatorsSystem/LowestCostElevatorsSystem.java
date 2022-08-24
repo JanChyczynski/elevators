@@ -10,7 +10,7 @@ public class LowestCostElevatorsSystem extends ElevatorsSystem {
         super(elevators);
     }
 
-    public int call(int floor, Direction direction){
+    public int call(int floor, Direction direction) {
         int minCost = Integer.MAX_VALUE;
         int bestElevatorID = -1;
         for (int i = 0; i < elevators.size(); i++) {

@@ -90,7 +90,6 @@ public class TerminalUI {
         }
     }
 
-
     private static void checkArgumentsNumber(String[] splitLine, int expected) throws InvalidCommandArguments {
         if (splitLine.length < expected + 1) {
             throw new InvalidCommandArguments("too few numbers of arguments, expected" + expected);
@@ -120,10 +119,11 @@ public class TerminalUI {
             throw new InvalidCommandArguments("wrong number format");
         }
     }
-    private static void chooseDestination(String[] splitLine) throws InvalidCommandArguments  {
+
+    private static void chooseDestination(String[] splitLine) throws InvalidCommandArguments {
         checkArgumentsNumber(splitLine, 2);
         try {
-                elevatorSystem.chooseDestination(Integer.parseInt(splitLine[1]), Integer.parseInt(splitLine[2]));
+            elevatorSystem.chooseDestination(Integer.parseInt(splitLine[1]), Integer.parseInt(splitLine[2]));
         } catch (NumberFormatException e) {
             throw new InvalidCommandArguments("wrong number format");
         } catch (IndexOutOfBoundsException e) {

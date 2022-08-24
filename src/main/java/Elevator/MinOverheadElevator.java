@@ -3,7 +3,7 @@ package Elevator;
 import static java.lang.Math.abs;
 
 
-public class MinOverheadElevator extends Elevator{
+public class MinOverheadElevator extends Elevator {
     public MinOverheadElevator(int startFloor) {
         super(startFloor);
     }
@@ -29,18 +29,18 @@ public class MinOverheadElevator extends Elevator{
         }
     }
 
-    protected record MinCostResult(int cost, int index) {}
+    protected record MinCostResult(int cost, int index) {
+    }
 
     protected int overheadCost(int time) {
-        return time*time;
+        return time * time;
     }
 
     protected MinCostResult findMinCost(int floor, Direction direction) {
         int currentFloor = this.floor;
-        if(destinations.isEmpty()){
+        if (destinations.isEmpty()) {
             return new MinCostResult(abs(floor - currentFloor), 0);
-        }
-        else {
+        } else {
             int currentTripTime = 0;
             int prevFloor = currentFloor;
             MinCostResult bestResult = new MinCostResult(Integer.MAX_VALUE, 0);
@@ -48,19 +48,17 @@ public class MinOverheadElevator extends Elevator{
                 int nextFloor = destinations.get(i);
                 currentTripTime += abs(prevFloor - nextFloor) + PICKUP_COST;
 
-                if(direction == null ||
+                if (direction == null ||
                         (direction == Direction.UP && nextFloor >= floor) ||
-                        (direction == Direction.DOWN && nextFloor <= floor))
-                {
+                        (direction == Direction.DOWN && nextFloor <= floor)) {
                     bestResult = updateBestResult(floor, prevFloor, bestResult, i, nextFloor, currentTripTime);
                 }
 
                 prevFloor = nextFloor;
             }
-            currentTripTime += abs(destinations.get(destinations.size()-1) - floor);
+            currentTripTime += abs(destinations.get(destinations.size() - 1) - floor);
             int currentCost = overheadCost(currentTripTime);
-            if (currentCost < bestResult.cost)
-            {
+            if (currentCost < bestResult.cost) {
                 bestResult = new MinCostResult(currentCost, destinations.size());
             }
             return bestResult;
@@ -70,14 +68,13 @@ public class MinOverheadElevator extends Elevator{
     private MinCostResult updateBestResult(int floor, int prevFloor, MinCostResult bestResult, int i, int nextFloor, int currentTripTime) {
         int callerTime = currentTripTime + abs(prevFloor - floor);
         int currentCost = overheadCost(callerTime);
-        int overhead = (floor != nextFloor? PICKUP_COST : 0) +
-                + abs(prevFloor - floor) + abs(floor - nextFloor)
+        int overhead = (floor != nextFloor ? PICKUP_COST : 0) +
+                +abs(prevFloor - floor) + abs(floor - nextFloor)
                 - abs(prevFloor - nextFloor);
-        for (int j = i +1; j < destinations.size(); j++) {
+        for (int j = i + 1; j < destinations.size(); j++) {
             currentCost += overheadCost(overhead);
         }
-        if (currentCost < bestResult.cost)
-        {
+        if (currentCost < bestResult.cost) {
             bestResult = new MinCostResult(currentCost, i);
         }
         return bestResult;
