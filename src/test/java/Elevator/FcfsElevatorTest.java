@@ -43,4 +43,14 @@ public class FcfsElevatorTest {
         assertEquals(30, elevator.callCost(0, Direction.UP));
     }
 
+    @Test
+    public void testGetNextStop(){
+        FcfsElevator elevator = new FcfsElevator(0);
+        assertEquals (0, elevator.getNextStop());
+        elevator.call(3, Direction.UP);
+        assertEquals (3, elevator.getNextStop());
+        elevator.call(2, Direction.UP);
+        assertEquals (3, elevator.getNextStop());
+    }
+
 }

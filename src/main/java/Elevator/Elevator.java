@@ -48,7 +48,7 @@ public abstract class Elevator implements IElevator{
 
     @Override
     public int getNextStop() {
-        return destinations.get(0);
+        return destinations.isEmpty()? floor : destinations.get(0);
     }
 
     public List<Integer> getDestinations() {
