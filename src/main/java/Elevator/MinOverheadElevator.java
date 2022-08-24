@@ -71,9 +71,9 @@ public class MinOverheadElevator extends Elevator {
         int overhead = (floor != nextFloor ? PICKUP_COST : 0) +
                 +abs(prevFloor - floor) + abs(floor - nextFloor)
                 - abs(prevFloor - nextFloor);
-        for (int j = i + 1; j < destinations.size(); j++) {
-            currentCost += overheadCost(overhead);
-        }
+
+        currentCost += (destinations.size() - i) * overheadCost(overhead);
+
         if (currentCost < bestResult.cost) {
             bestResult = new MinCostResult(currentCost, i);
         }
