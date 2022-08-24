@@ -20,6 +20,7 @@ public abstract class ElevatorsSystem implements IElevatorsSystem {
     }
 
     public void simulate(int time){
+        if (time < 0) { throw new IllegalArgumentException("Time to simulate should be non-negative"); }
         for(IElevator elevator : elevators){
             elevator.simulate(time);
         }

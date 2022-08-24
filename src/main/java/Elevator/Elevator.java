@@ -55,8 +55,16 @@ public abstract class Elevator implements IElevator{
         return destinations;
     }
 
-
     public ElevatorStatus getStatus() {
         return status;
+    }
+
+    @Override
+    public String toString() {
+        return "Elevator{" +
+                "floor=" + floor +
+                (destinations.isEmpty()? "" : (", next stop=" + getNextStop()) )+
+                ", status=" + status +
+                '}';
     }
 }
