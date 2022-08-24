@@ -3,7 +3,7 @@ package Elevator;
 import static java.lang.Math.abs;
 
 public class FcfsElevator extends Elevator{
-    protected FcfsElevator(int startFloor) {
+    public FcfsElevator(int startFloor) {
         super(startFloor);
     }
 

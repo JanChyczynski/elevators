@@ -10,7 +10,7 @@ public abstract class Elevator implements IElevator{
 
     public static final int PICKUP_COST = 2;
 
-    protected Elevator(int startFloor) {
+    public Elevator(int startFloor) {
         this.floor = startFloor;
         this.destinations = new LinkedList<>();
         this.status = ElevatorStatus.WAITING;
