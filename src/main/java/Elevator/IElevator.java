@@ -1,5 +1,7 @@
 package Elevator;
 
+import java.util.List;
+
 public interface IElevator {
     int callCost(int floor, Direction direction);
 
@@ -12,4 +14,8 @@ public interface IElevator {
     int getFloor();
 
     int getNextStop();
+
+    List<Integer> getDestinations();
+
+    ElevatorStatus getStatus();
 }

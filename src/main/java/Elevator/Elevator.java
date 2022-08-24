@@ -1,27 +1,62 @@
 package Elevator;
 
-public abstract class Elevator implements IElevator{
-    @Override
-    public void call(int floor, Direction direction) {
-    }
+import java.util.LinkedList;
+import java.util.List;
 
-    @Override
-    public void chooseDestination(int floor) {
-        throw new UnsupportedOperationException("Not implemented yet");
+public abstract class Elevator implements IElevator{
+    protected int floor;
+    protected List<Integer> destinations;
+    protected ElevatorStatus status;
+
+    public static final int PICKUP_COST = 2;
+
+    protected Elevator(int startFloor) {
+        this.floor = startFloor;
+        this.destinations = new LinkedList<>();
+        this.status = ElevatorStatus.WAITING;
     }
 
     @Override
     public void simulate(int time) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        for (int i = 0; i < time; i++) {
+            switch (status) {
+                case MOVING:
+                    if(floor == getNextStop()) {
+                        status = ElevatorStatus.PICKUP;
+                        destinations.remove(0);
+                    }
+                    else {
+                        floor += floor < getNextStop()? 1 : -1;
+                    }
+                    break;
+                case WAITING:
+                    if(!destinations.isEmpty()){
+                        status = ElevatorStatus.MOVING;
+                    }
+                    break;
+                case PICKUP:
+                    status = destinations.isEmpty()? ElevatorStatus.WAITING : ElevatorStatus.MOVING;
+                    break;
+            }
+        }
     }
 
     @Override
     public int getFloor() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return floor;
     }
 
     @Override
     public int getNextStop() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return destinations.get(0);
+    }
+
+    public List<Integer> getDestinations() {
+        return destinations;
+    }
+
+
+    public ElevatorStatus getStatus() {
+        return status;
     }
 }
