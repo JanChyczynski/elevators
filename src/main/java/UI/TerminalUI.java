@@ -42,6 +42,8 @@ public class TerminalUI {
         System.out.println("  DEST <elevator number> <floor number>");
         System.out.println("Run the simulation:");
         System.out.println("  SIM <number of steps>");
+        System.out.println("Get an elevator's floor, status, and destinations info:");
+        System.out.println("  INFO <elevator number>");
         System.out.println("to exit type QUIT");
         System.out.println("");
     }
@@ -71,6 +73,9 @@ public class TerminalUI {
                             break;
                         case "SIM":
                             simulate(splitLine);
+                            break;
+                        case "INFO":
+                            elevatorInfo(splitLine);
                             break;
                         case "QUIT":
                             return;
@@ -135,6 +140,18 @@ public class TerminalUI {
             throw new InvalidCommandArguments("wrong number format");
         } catch (IllegalArgumentException e) {
             throw new InvalidCommandArguments(e.getMessage());
+        }
+    }
+
+    private static void elevatorInfo(String[] splitLine) throws InvalidCommandArguments {
+        checkArgumentsNumber(splitLine, 1);
+        try {
+            IElevator elevator = elevatorSystem.getElevators().get(Integer.parseInt(splitLine[1]));
+            System.out.println(elevator + "\ndestinations: " + elevator.getDestinations());
+        } catch (NumberFormatException e) {
+            throw new InvalidCommandArguments("wrong number format");
+        } catch (IndexOutOfBoundsException e) {
+            throw new InvalidCommandArguments("wrong elevator number");
         }
     }
 }
